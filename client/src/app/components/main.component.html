@@ -1,0 +1,25 @@
+<h2>Menu</h2>
+
+<button type="button" routerLink="/order">
+  New Order
+</button>
+
+<form [formGroup]="form" (ngSubmit)="search()"
+    style="margin-top: 20px;">
+  <input type="number" min="0" placeholder="Order number" size=20
+    formControlName="orderId">
+  <button type="submit" [disabled]='form.invalid'>Search Order</button>
+</form>
+
+
+<!-- <form #myForm="ngForm" (ngSubmit)="updateOrder(myForm)">
+<div>
+    <button (click)="createOrder()">Create Order</button>
+</div>
+
+<div>
+    <input type="text" placeholder="Enter your orderId" name="orderId" ngModel>
+    <button type ="submit">Update Order</button>
+</div>
+
+</form> -->

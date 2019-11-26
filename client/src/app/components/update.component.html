@@ -1,0 +1,107 @@
+
+<form [formGroup]="form" (ngSubmit)="update()">
+
+        Email:
+        <input type="email" size="48" placeholder="Your email" formControlName="email">
+      
+        <button type="submit" [disabled]="form.invalid || (orderDetails.length <= 0)">
+          Update Order!
+        </button>
+      
+        <hr><br>
+      
+        <button type="button" (click)="addOrderDetails()"> Add </button>
+      
+        <div *ngIf="orderDetails?.length <= 0">
+          <h2>Your cart is empty</h2>
+        </div>
+      
+        <table border="1" *ngIf="orderDetails?.length > 0">
+          <thead>
+            <tr>
+              <th style="width: 60vw;">Description</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody formArrayName="orderDetails">
+            <!--
+            <tr *ngFor="let od of orderDetails.controls; let i = index;" [formGroupName]="i">
+            -->
+            <tr *ngFor="let od of orderDetails.controls; let i = index;" [formGroup]="od">
+              <td>
+                <input type="text" size="40" formControlName="description">
+              </td>
+              <td>
+                <input type="number" formControlName="quantity">
+              </td>
+              <td>
+                <button type="button" (click)="delete(i)">
+                  &#x274C;
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      
+      </form>
+
+
+<!-- 
+<form [formGroup]="form" (ngSubmit)="update()">
+    Email:
+    <input type="email" size="48" placeholder="Your email" formControlName="email">
+
+    <button type="submit" [disabled]="form.invalid || (orderDetails.length <= 0)">Update Order!</button>
+
+    <button type="button" (click)="addOrderDetails()">Add</button>
+
+    <div *ngIf= "orderDetails.length <= 0">Your cart is empty</div>
+
+    <table border="1" *ngIf= "orderDetails.length >0">
+        <thead>
+            <tr>
+                <th style= "width: 80vw;">Description</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody formArrayName="orderDetails">
+            <tr *ngFor ="let od of orderDetails.controls; let i = index;" [formGroup]="od">
+                <td><input type="text" size="40" formControlName="description"></td>
+                <td><input type="number" formControlName="quantity"></td>
+                <td><button type="button" (click)="delete(i)">&#x274C;</button></td>
+            </tr>
+        </tbody>
+    </table>
+</form> -->
+
+<!-- <hr>
+Email: {{ orderForm.hasError('Email')}}, 
+Length: {{ orderForm.hasError('minLength')}},
+required: {{ orderForm.hasError('required')}} -->
+  
+  
+
+<!-- <form [formGroup]="updateForm" (ngSubmit)="update()">
+    Order id: <input type="text" size="48" formControlName="orderId">
+    <button type="submit">Show Order Details!</button>
+
+    <div *ngIf= "orderDetails.length <= 0">Your cart is empty</div>
+
+    <table border="1" *ngIf= "orderDetails.length >0">
+        <thead>
+            <tr>
+                <th style= "width: 80vw;">Description</th>
+                <th>Ord_details_id</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody formArrayName="orderDetails">
+            <tr *ngFor ="let od of orderDetails.controls; let i = index" [formGroup]="od"> [formGroupName]="i" -->
+                <!-- <td><input type="text" size="40" formControlName="description" value="description"></td>
+                <td><input type="text" formControlName="ord_details_id" value="ord_details_id"></td>
+                <td><input type="number" formControlName="quantity" value="quantity"></td>
+                <td><button (click)="delete(i)">&#x274C;</button></td>
+            </tr>
+        </tbody>
+    </table>
+</form> -->

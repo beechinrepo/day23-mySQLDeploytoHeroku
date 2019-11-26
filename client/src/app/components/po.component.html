@@ -1,0 +1,34 @@
+<form [formGroup]="orderForm" (ngSubmit)="checkout()">
+
+    Email: <input type="text" size="48" placeholder="Your email" formControlName="email">
+
+    <button type="submit" [disabled]="orderForm.invalid || (orderDetails.length <= 0)">Place Order!</button>
+
+    <hr><br>
+
+    <button type="button" (click)="addOrderDetails()">Add</button>
+
+    <div *ngIf= "orderDetails.length <= 0">Your cart is empty</div>
+
+    <table border="1" *ngIf= "orderDetails.length >0">
+        <thead>
+            <tr>
+                <th style= "width: 80vw;">Description</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody formArrayName="orderDetails">
+            <!-- <tr *ngFor="let od of orderDetails.controls; let i = index;" [formGroupName]="i"> -->
+            <tr *ngFor ="let od of orderDetails.controls; let i = index" [formGroup]="od">
+                <td><input type="text" size="40" formControlName="description"></td>
+                <td><input type="number" formControlName="quantity"></td>
+                <td><button (click)="delete(i)">&#x274C;</button></td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+<!-- <hr>
+Email: {{ orderForm.hasError('Email')}}, 
+Length: {{ orderForm.hasError('minLength')}},
+required: {{ orderForm.hasError('required')}} -->
